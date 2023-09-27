@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Footprint Calculator</title>
+</head>
+<body>
+    <h1>Water Footprint Calculator</h1>
+
+    <form id="calculator-form">
+        <label for="product-name">Product Name:</label>
+        <input type="text" id="product-name" required><br>
+
+        <label for="product-type">Product Type:</label>
+        <select id="product-type">
+            <option value="food">Food</option>
+            <option value="clothing">Clothing</option>
+            <option value="electronics">Electronics</option>
+            <!-- Add more product types as needed -->
+        </select><br>
+
+        <label for="quantity">Quantity (in units):</label>
+        <input type="number" id="quantity" required><br>
+
+        <button type="button" onclick="calculateWaterFootprint()">Calculate</button>
+    </form>
+
+    <p id="result"></p>
+
+    <script>
+        function calculateWaterFootprint() {
+            // Get user inputs
+            const productName = document.getElementById('product-name').value;
+            const productType = document.getElementById('product-type').value;
+            const quantity = parseFloat(document.getElementById('quantity').value);
+
+            // Define water footprint values for different product types (in liters per unit)
+            const waterFootprintValues = {
+                food: 500,        // Example value for food products
+                clothing: 1000,   // Example value for clothing products
+                electronics: 2000 // Example value for electronics products
+                // Add more values for other product types
+            };
+
+            // Calculate the water footprint
+            const waterFootprint = waterFootprintValues[productType] * quantity;
+
+            // Display the result
+            const resultElement = document.getElementById('result');
+            resultElement.innerHTML = `The water footprint of ${quantity} units of ${productName} is ${waterFootprint} liters.`;
+        }
+    </script>
+</body>
+</html>
